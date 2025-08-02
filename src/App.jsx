@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
-import SetUsername from "./pages/SetUsername";
-import AuthPage from "./pages/AuthPage";
-import CameraPages from "./pages/Camera";
+// import Dashboard from "./pages/Dashboard";
+// import SetUsername from "./pages/SetUsername";
+// import AuthPage from "./pages/AuthPage";
+// import CameraPages from "./pages/Camera";
 import CameraCapture from "./components/Fragments/CameraCapture";
 
 export default function App() {
