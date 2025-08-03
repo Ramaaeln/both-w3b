@@ -38,7 +38,47 @@ export default function CameraCapture() {
       canvasSize: { width: 1200, height: 1800 },
       templates: [
         {
-          name: "Toy Story",
+          name: "White Frame",
+          src: "/templates/templates-2.png",
+          positions: [
+            { x: 50, y: 69 },
+            { x: 50, y: 629 },
+            { x: 50, y: 1187 },
+          ],
+          photoSize: { width: 1100, height: 550 },
+        },
+        {
+          name: "Black Frame",
+          src: "/templates/templates-5.png",
+          positions: [
+            { x: 50, y: 64 },
+            { x: 50, y: 625 },
+            { x: 50, y: 1185 },
+          ],
+          photoSize: { width: 1100, height: 550 },
+        },
+        {
+          name: "Chocolate Frame",
+          src: "/templates/templates-3.png",
+          positions: [
+            { x: 50, y: 64 },
+            { x: 50, y: 625 },
+            { x: 50, y: 1185 },
+          ],
+          photoSize: { width: 1100, height: 550 },
+        },
+        {
+          name: "Pinky Frame",
+          src: "/templates/templates-4.png",
+          positions: [
+            { x: 50, y: 64 },
+            { x: 50, y: 625 },
+            { x: 50, y: 1185 },
+          ],
+          photoSize: { width: 1100, height: 550 },
+        },
+        {
+          name: "Toy Story Frame",
           src: "/templates/template-toy-story.png",
           positions: [
             { x: 50, y: 66 },
@@ -48,14 +88,14 @@ export default function CameraCapture() {
           photoSize: { width: 1100, height: 550 },
         },
         {
-          name: "Default",
+          name: "Cute Frame",
           src: "/templates/templates-1.png",
           positions: [
-            { x: 17, y: 70 },
-            { x: 17, y: 620 },
-            { x: 17, y: 1190 },
+            { x: 50, y: 69 },
+            { x: 50, y: 627 },
+            { x: 50, y: 1187 },
           ],
-          photoSize: { width: 1200, height: 560 },
+          photoSize: { width: 1100, height: 550 },
         },
       ],
     },
@@ -116,10 +156,37 @@ export default function CameraCapture() {
                   ctx.filter = "saturate(1.3) contrast(1.15) brightness(1.1)";
                   break;
                 case "vinpixar":
-                  ctx.filter = "sepia(0.1) saturate(1.2) contrast(1.05) brightness(1.05)";
+                  ctx.filter =
+                    "sepia(0.1) saturate(1.2) contrast(1.05) brightness(1.05)";
                   break;
                 case "greenharmony":
-                  ctx.filter = "saturate(1.2) contrast(1.05) brightness(1.05) hue-rotate(15deg)";
+                  ctx.filter =
+                    "saturate(1.2) contrast(1.05) brightness(1.05) hue-rotate(15deg)";
+                  break;
+                case "softdream":
+                  ctx.filter = "blur(2px) brightness(1.1) saturate(1.2)";
+                  break;
+                case "neonfade":
+                  ctx.filter =
+                    "brightness(1.2) contrast(1.3) blur(1px) hue-rotate(45deg)";
+                  break;
+                case "coolbreeze":
+                  ctx.filter =
+                    "brightness(1.05) contrast(1.1) hue-rotate(200deg)";
+                  break;
+                case "warmglow":
+                  ctx.filter =
+                    "brightness(1.1) saturate(1.2) hue-rotate(-10deg)";
+                  break;
+                case "fadedfilm":
+                  ctx.filter = "contrast(0.85) brightness(1.1) sepia(0.2)";
+                  break;
+                case "cyberpop":
+                  ctx.filter = "contrast(1.4) saturate(1.5) hue-rotate(90deg)";
+                  break;
+                case "monoblue":
+                  ctx.filter =
+                    "grayscale(100%) brightness(1.1) hue-rotate(180deg)";
                   break;
                 default:
                   ctx.filter = "none";
@@ -159,7 +226,9 @@ export default function CameraCapture() {
 
     const currentLayout = layoutTemplate[selectLayouts];
     if (imageSrc.length >= currentLayout.maxPhotos) {
-      alert(`Maksimal ${currentLayout.maxPhotos} foto. Hapus dulu untuk ambil baru.`);
+      alert(
+        `Maksimal ${currentLayout.maxPhotos} foto. Hapus dulu untuk ambil baru.`
+      );
       return;
     }
 
@@ -200,6 +269,22 @@ export default function CameraCapture() {
         return "sepia(0.1) saturate(1.2) contrast(1.05) brightness(1.05)";
       case "greenharmony":
         return "saturate(1.2) contrast(1.05) brightness(1.05) hue-rotate(15deg)";
+      case "softdream":
+        return "blur(2px) brightness(1.1) saturate(1.2)";
+      case "neonfade":
+        return "brightness(1.2) contrast(1.3) blur(1px) hue-rotate(45deg)";
+      case "retrograiny":
+        return "sepia(0.2) contrast(1.1) brightness(1.05)";
+      case "coolbreeze":
+        return "brightness(1.05) contrast(1.1) hue-rotate(200deg)";
+      case "warmglow":
+        return "brightness(1.1) saturate(1.2) hue-rotate(-10deg)";
+      case "fadedfilm":
+        return "contrast(0.85) brightness(1.1) sepia(0.2)";
+      case "cyberpop":
+        return "contrast(1.4) saturate(1.5) hue-rotate(90deg)";
+      case "monoblue":
+        return "grayscale(100%) brightness(1.1) hue-rotate(180deg)";
       default:
         return "none";
     }
@@ -230,7 +315,7 @@ export default function CameraCapture() {
           />
           {countdown !== null && (
             <div className="absolute inset-0 flex items-center justify-center z-50">
-              <div className="text-6xl font-bold text-white bg-black bg-opacity-50 px-6 py-3 rounded-xl">
+              <div className="text-6xl font-bold text-white  bg-opacity-50 px-6 py-3 rounded-xl">
                 {countdown}
               </div>
             </div>
@@ -306,14 +391,24 @@ export default function CameraCapture() {
             <option value="normal">🌈 Normal</option>
             <option value="grayscale">🖤 Hitam Putih</option>
             <option value="sepia">🟤 Kuning Keemasan</option>
-            <option value="pixar">🟤 Pixar Styles</option>
-            <option value="vinpixar">🟤 Vintage Pixar</option>
-            <option value="greenharmony">🟤 Green Harmony</option>
+            <option value="pixar">🎨 Pixar Styles</option>
+            <option value="vinpixar">📼 Vintage Pixar</option>
+            <option value="greenharmony">🌿 Green Harmony</option>
+            <option value="softdream">💭 Soft Dream</option>
+            <option value="neonfade">🌌 Neon Fade</option>
+            <option value="retrograiny">📻 Retro Grainy</option>
+            <option value="coolbreeze">💨 Cool Breeze</option>
+            <option value="warmglow">🔥 Warm Glow</option>
+            <option value="fadedfilm">📽️ Faded Film</option>
+            <option value="cyberpop">💫 Cyber Pop</option>
+            <option value="monoblue">🔵 Monochrome Blue</option>
           </select>
         </div>
 
         <div className="flex flex-col items-center">
-          <h3 className="font-semibold text-lg mb-4 text-blue-900">📷 Hasil Foto:</h3>
+          <h3 className="font-semibold text-lg mb-4 text-blue-900">
+            📷 Hasil Foto:
+          </h3>
           <div className="flex justify-center gap-2 flex-wrap">
             {imageSrc.map((src, i) => (
               <div key={i} className="relative inline-block">
@@ -347,7 +442,9 @@ export default function CameraCapture() {
       <div className="md:w-1/2 w-full h-1/2 md:h-full flex flex-row justify-around items-start p-6 overflow-y-auto gap-6 bg-white">
         {finalImage && (
           <div className="flex flex-col items-center">
-            <h4 className="text-lg font-semibold mb-2 text-pink-700">🎨 Preview Final:</h4>
+            <h4 className="text-lg font-semibold mb-2 text-pink-700">
+              🎨 Preview Final:
+            </h4>
             <img
               src={finalImage}
               alt="Hasil Gabungan"
